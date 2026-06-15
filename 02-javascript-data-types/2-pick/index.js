@@ -6,20 +6,7 @@
  */
 
 export const pick = (obj, ...fields) => {
-  if (obj == null || typeof obj !== 'object') {
-    return {};
-  }
-  
-  if (fields.length === 0) {
-    return {};
-  }
-
-  const validFields = fields.filter(field => typeof field === 'string');
-  if (validFields.length === 0) {
-    return {};
-  }
-
   return Object.fromEntries(
-    Object.entries(obj).filter(([key]) => validFields.includes(key))
+    Object.entries(obj).filter(([key]) => fields.includes(key))
   );
 };

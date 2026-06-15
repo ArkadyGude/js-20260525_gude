@@ -6,13 +6,11 @@
  */
 
 export const omit = (obj, ...fields) => {
-  if (obj == null || typeof obj !== 'object') {
-    return {};
+  const result = {};
+  for (const key of Object.keys(obj)) {
+    if (!fields.includes(key)) {
+      result[key] = obj[key];
+    }
   }
-
-  const validFields = fields.filter(field => typeof field === 'string');
-  
-  return Object.fromEntries(
-    Object.entries(obj).filter(([key]) => !validFields.includes(key))
-  );
+  return result;
 };
